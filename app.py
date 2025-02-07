@@ -10,7 +10,7 @@ valid_password = "I124Q"
 @app.route('/')
 def home():
     # Debug line to check the template folder path
-    print("Template folder path:", os.path.join(os.getcwd(), "templates"))
+    print("Template folder path:", os.path.join(os.getcwd(), "Templates"))
     return render_template('index.html')
 
 @app.route('/about')
