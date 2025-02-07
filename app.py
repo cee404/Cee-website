@@ -1,11 +1,7 @@
-import os, random
-from flask import Flask, render_template, request, redirect, url_for, jsonify
+import os, 
+from flask import Flask, render_template, redirect, url_for, 
 
 app = Flask(__name__)
-
-# Credentials
-valid_username = "Cee404"
-valid_password = "I124Q"
 
 @app.route('/')
 def home():
@@ -13,51 +9,5 @@ def home():
     print("Template folder path:", os.path.join(os.getcwd(), "Templates"))
     return render_template('index.html')
 
-@app.route('/about')
-def about():
-    return render_template('about.html')
-
-@app.route('/cee')
-def cee():
-    return render_template('cee.html')
-
-@app.route('/login', methods=['GET', 'POST'])
-def login():
-    if request.method == 'POST':
-        username = request.form['username']
-        password = request.form['password']
-
-        # Check credentials
-        if username == valid_username and password == valid_password:
-            return render_template('lab.html', username=username)
-        else:
-            error = "Invalid username or password. Try again."
-            return render_template('login.html', error=error)
-
-    return render_template('login.html')
-
-# List of random fortunes/stories
-fortunes = [
-    "You will have a great coding session today!",
-    "An unexpected opportunity will come your way.",
-    "Beware of bugs in your code—they multiply when untested!",
-    "You will soon solve a problem that's been bothering you.",
-    "A friend will surprise you with good news.",
-    " A quiet mind will open doors to unexpected opportunities.",
-    " Your dedication today will shape your success tomorrow.",
-    " An idea you overlook now might be your greatest breakthrough later.",
-    " Go with the flow, but don’t lose sight of your direction.",
-    "A rainbow of opportunities will appear when you least expect it.",
-    " Your hard work will soon pay off.",
-    " A good night’s sleep will lead to a productive day.",
-    " A quiet mind will open doors to unexpected opportunities.",
-    " Your dedication today will shape your success tomorrow.",
-    " An idea you overlook now might be your greatest breakthrough later.",
-    " Go with the flow, but don’t lose sight of your direction.",
-]
-
-@app.route('/Story', methods=['GET'])
-def Story():
-    return jsonify({"fortune": random.choice(fortunes)})
 if __name__ == '__main__':
-    app.run(host="0.0.0.0", port=10000)
+    app.run(debug=True)
